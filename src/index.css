@@ -1,0 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { font-family: -apple-system, sans-serif; }
+body { margin: 0; background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); }
