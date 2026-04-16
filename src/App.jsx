@@ -12,17 +12,26 @@ function App() {
   const [showMap, setShowMap] = useState(false);
   const mapRef = useRef(null);
 
-  useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (pos) => setLocation({
-          lat: pos.coords.latitude,
-          lng: pos.coords.longitude
-        }),
-        () => alert('Location needed for best experience!')
-      );
-    }
-  }, []);
+ // src/App.jsx - Replace location useEffect:
+useEffect(() => {
+  // FAKE LOCATION for demo (Madison Square Garden area)
+  setLocation({
+    lat: 40.7505,
+    lng: -73.9934
+  });
+  
+  // Update wait times every 10s (demo)
+  const interval = setInterval(() => {
+    setWaitTimes({
+      food: Math.floor(Math.random() * 8) + 2,
+      concessions: Math.floor(Math.random() * 10) + 3,
+      restroom: Math.floor(Math.random() * 5) + 1,
+      entry: Math.floor(Math.random() * 7) + 2
+    });
+  }, 10000);
+  
+  return () => clearInterval(interval);
+}, []);
 
   const getSmartRecommendation = () => {
     const options = [
